@@ -123,6 +123,10 @@ def FinalCheck(v1,v2):
 
 
 
+
+    
+
+
    	#print sentences2    
    	for sentence in sentences2:
    		count_cosine.append(findmaxcosine(sentence,sentences1))
@@ -156,6 +160,7 @@ def main():
     v2 = ''.join(v2)
 
     ind = []
+    
     sw_list = list(StopWords())
     hey = v2.split(".")
     count = 0
@@ -170,11 +175,15 @@ def main():
 		print num_thresh
 		print den_thresh	
 		print num_thresh/den_thresh
-        print "Hey"    
-    # count = 0
-    # for no in ind:
-    #     hey.pop(no-count)
-    #     count+=1
+		ind.append(num_thresh/den_thresh)
+    print "hello"   
+    count = 0
+    
+    for no in ind:
+    	if no<0.19:
+	    hey.pop(ind.index(no))
+    if str(hey[0])[1]==' ':
+        hey[0] = str(hey[0])[1:]    
     v2 = ''.join(hey)
     print v2    
 
@@ -214,7 +223,10 @@ def main():
     #print len(nku)
     
     if len(nku)==0:
-        marks=0.75    
+        if v1==v2:
+            marks=1.5
+        else:
+            marks=1    
     else:
         count = count*100/len(nku)	
         marks += count*1.5/100
